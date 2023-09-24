@@ -4,16 +4,16 @@
  * *********************************************************/
 
 #include <linux/init.h>
-#include <linux/module.h> //necessary for all linux modules
-#include <linux/moduleparam.h> //for reading parameter at load time
+#include <linux/module.h> // necessary for all linux modules
+#include <linux/moduleparam.h> // for reading parameter at load time
 
-MODULE_LICENSE("Dual BSD/GPL"); //free licence. kernel would complain without this line
+MODULE_LICENSE("Dual BSD/GPL"); // free licence. kernel would complain without this line
 
 static char *whom = "world";
 static int amount = 1;
 
-module_param(amount, int, S_IRUGO);
-module_param(whom, charp, S_IRUGO);
+module_param(amount, int, S_IRUGO); // S_IRUGO represents file permission. User, Group, Others can read
+module_param(whom, charp, S_IRUGO); // char pointer
 
 static int hello_init(void){
     printk(KERN_ALERT "hello world! whom = %s, amount = %d", whom, amount); 
